@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lamaatech.com.inventory.core.EditorActivity.view.EditorActivity"
+    tools:showIn="@layout/activity_editor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/product_name"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+
+            android:hint="@string/product_name"
+            android:inputType="text" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/price"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/product_Price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/price"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/qunatity"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/decrease_quantity"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@color/primaryLightColor"
+                android:onClick="decreaseQuantityBtn"
+                android:text="-"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/product_qunatity"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/qunatity"
+                android:inputType="number"
+                android:text="0" />
+
+
+            <Button
+                android:id="@+id/increase_quantity"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@color/primaryLightColor"
+                android:onClick="increaseQuantityBtn"
+                android:text="+"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/supplier_name"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/product_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/supplier_name"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/supplier_phone"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/supplier_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/e_g_02011000000"
+            android:inputType="phone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/supplier_email"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/supplier_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/supplier_gmail_com"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/image"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:onClick="selectImageBtn"
+                android:text="@string/select_image" />
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/image"
+                android:hint="@string/supplier_name"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryLightColor"
+                android:onClick="addProductBtn"
+                android:text="@string/add" />
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryLightColor"
+                android:onClick="deleteProductBtn"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryLightColor"
+                android:onClick="updateProductBtn"
+                android:text="@string/update" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
