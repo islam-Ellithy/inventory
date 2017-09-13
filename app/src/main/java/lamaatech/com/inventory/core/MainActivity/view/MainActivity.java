@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
 import lamaatech.com.inventory.R;
-import lamaatech.com.inventory.core.DetailActivity.view.DetailActivity;
 import lamaatech.com.inventory.core.EditorActivity.view.EditorActivity;
 import lamaatech.com.inventory.core.MainActivity.controller.MainController;
 import lamaatech.com.inventory.core.MainActivity.model.MainContract;
@@ -56,11 +56,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
 
     }
 
-    private void goToEmptyProductsFragment() {
+    private void goToEmptyView() {
 
-       // RelativeLayout layout = (RelativeLayout) findViewById(R.id.empty_view);
-
-        //layout.setVisibility(View.VISIBLE);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.empty_view);
+        layout.setVisibility(View.VISIBLE);
     }
 
 
@@ -87,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.insert_dummy_data) {
+
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -94,20 +96,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
 
     @Override
     public void onListFragmentInteraction(Product item) {
-        startActivity(new Intent(this, DetailActivity.class));
+        Intent intent = new Intent(this, EditorActivity.class);
+        intent.putExtra("product", item);
+        startActivity(intent);
     }
 
 
     @Override
     public void displayUpdateProducts(List<Product> products) {
-//        if (products.size() == 0) {
-
-        //      }
-
-
-        //goToEmptyProductsFragment();
-        this.products = products;
-        goToProductFragment();
+        if (products.size() == 0) {
+            goToEmptyView();
+        } else {
+            this.products = products;
+            goToProductFragment();
+        }
     }
 
 }

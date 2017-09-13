@@ -52,6 +52,14 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         setSupportActionBar(toolbar);
         controller = new EditorController(this, getBaseContext());
         setUi();
+
+        Bundle extras = getIntent().getExtras();
+
+        Product item = (Product) extras.getSerializable("product");
+
+        if (item != null) {
+            setValuesToView(item);
+        }
     }
 
     private void setUi() {
@@ -66,6 +74,12 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
         selectImageIV = (ImageView) findViewById(R.id.product_image);
     }
 
+    private void setValuesToView(Product item) {
+        productNameEdt.setText(item.getProductName());
+        productQuantityEdt.setText(String.valueOf(item.getProductQuantity()));
+        productPriceEdt.setText(item.getProductPrice());
+        selectImageIV.setImageBitmap(DbBitmapUtility.getImage(item.getProductImage()));
+    }
 
     //get product attributes from ui into product object
     private void getProductFromUi() {
@@ -115,6 +129,13 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
     public void updateProductBtn(View view) {
         getProductFromUi();
         controller.updateProduct(product);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     @Override

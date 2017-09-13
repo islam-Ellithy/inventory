@@ -2,6 +2,8 @@ package lamaatech.com.inventory.models;
 
 import android.database.Cursor;
 
+import java.io.Serializable;
+
 import static lamaatech.com.inventory.database.ProductContract.ProductEntry.COLUMN_PRODUCT_NAME;
 import static lamaatech.com.inventory.database.ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE;
 import static lamaatech.com.inventory.database.ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE;
@@ -13,7 +15,7 @@ import static lamaatech.com.inventory.database.ProductContract.ProductEntry._ID;
  * Created by MrHacker on 9/6/2017.
  */
 
-public class Product {
+public class Product implements Serializable{
     private Integer productId;
     private String productName;
     private Integer productQuantity;
