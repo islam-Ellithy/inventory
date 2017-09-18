@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
+
+//I don't use this class I used native sql queries
 public class InventoryProvider extends ContentProvider {
 
     private ProductDbHelper dbHelper;

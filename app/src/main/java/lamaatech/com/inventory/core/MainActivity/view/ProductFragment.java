@@ -13,32 +13,17 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import lamaatech.com.inventory.R;
-import lamaatech.com.inventory.core.MainActivity.model.MainModel;
 import lamaatech.com.inventory.models.Product;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class ProductFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private List<Product> products = null;
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public ProductFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static ProductFragment newInstance(int columnCount) {
         ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
@@ -60,7 +45,6 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
-        MainModel mainModel = new MainModel();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -95,7 +79,6 @@ public class ProductFragment extends Fragment {
     }
 
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Product item);
     }
 }

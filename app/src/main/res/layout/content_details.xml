@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="8dp"
-    android:layout_marginStart="8dp"
+    android:layout_marginStart="16dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="lamaatech.com.inventory.core.EditorActivity.view.EditorActivity"
-    tools:showIn="@layout/activity_editor">
+    tools:context="lamaatech.com.inventory.core.DetailsActivity.view.DetailsActivity"
+    tools:showIn="@layout/activity_details">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/product_name"
+            android:id="@+id/productNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -42,7 +42,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/product_Price"
+            android:id="@+id/productPriceEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -64,17 +64,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/decrease_quantity"
+                android:id="@+id/decreaseQuantityButton"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:background="@color/primaryLightColor"
-                android:onClick="decreaseQuantityBtn"
                 android:text="-"
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/product_qunatity"
+                android:id="@+id/productQuantityEditText"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -84,14 +83,12 @@
                 android:inputType="number"
                 android:text="0" />
 
-
             <Button
-                android:id="@+id/increase_quantity"
+                android:id="@+id/increaseQuantityButton"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:background="@color/primaryLightColor"
-                android:onClick="increaseQuantityBtn"
                 android:text="+"
                 android:textSize="24sp" />
 
@@ -105,27 +102,13 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/product_supplier"
+            android:id="@+id/productSupplierEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/supplier_name"
             android:inputType="textPersonName" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/supplier_phone"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/supplier_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/e_g_02011000000"
-            android:inputType="phone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,7 +118,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/supplier_email"
+            android:id="@+id/supplierEmailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -149,60 +132,64 @@
             android:textColor="@color/primaryTextColor"
             android:textSize="24sp" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/select_image"
+                android:id="@+id/selectImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
-                android:onClick="selectImageBtn"
+                android:background="@color/primaryLightColor"
+                android:gravity="center"
                 android:text="@string/select_image" />
 
             <ImageView
-                android:id="@+id/product_image"
+                android:id="@+id/productImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
+                android:layout_toEndOf="@+id/selectImageButton"
+                android:layout_toRightOf="@+id/selectImageButton"
                 android:contentDescription="@string/image"
                 android:hint="@string/supplier_name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_announcement" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/add_btn"
+                android:id="@+id/addProductButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryLightColor"
-                android:onClick="addProductBtn"
                 android:text="@string/add" />
 
             <Button
-                android:id="@+id/delete_btn"
+                android:id="@+id/deleteProductButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryLightColor"
-                android:onClick="deleteProductBtn"
-                android:text="@string/delete" />
+                android:text="@string/delete"
+                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/update_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/primaryLightColor"
-                android:onClick="updateProductBtn"
-                android:text="@string/update" />
 
         </LinearLayout>
-    </LinearLayout>
 
+        <include
+            android:id="@+id/newOrderLayout"
+            layout="@layout/new_order"
+            android:visibility="gone" />
+    </LinearLayout>
 </ScrollView>

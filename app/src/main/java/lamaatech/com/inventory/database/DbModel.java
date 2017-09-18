@@ -12,7 +12,6 @@ import java.util.List;
 
 import lamaatech.com.inventory.models.Product;
 
-import static lamaatech.com.inventory.database.ProductContract.ProductEntry.COLUMN_PRODUCT_NAME;
 import static lamaatech.com.inventory.database.ProductContract.ProductEntry.TABLE_NAME;
 
 /**
@@ -43,10 +42,26 @@ public class DbModel implements IModel {
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY_AVAILABLE, newProduct.getProductQuantity());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, newProduct.getProductSupplier());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE, newProduct.getProductImage());
+        values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER_EMAIL, newProduct.getSupplierEmail());
 
         long newRowId = db.insert(TABLE_NAME, null, values);
 
         showToast("Product has been added successfully");
+    }
+
+
+    public void deleteAllItemsFromDb() {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        try {
+            db.delete(TABLE_NAME, null, null);
+        } catch (SQLException e) {
+            //Toast.makeText(context,"due to delete: "+e,Toast.LENGTH_LONG).show();
+        } finally {
+            db.close();
+        }
+
+        showToast("Products have been deleted successfully");
     }
 
     @Override
@@ -57,8 +72,8 @@ public class DbModel implements IModel {
         try {
 
             db.execSQL("DELETE FROM " + TABLE_NAME +
-                    " WHERE " + ProductContract.ProductEntry.COLUMN_PRODUCT_NAME +
-                    " =\"" + deletedProduct.getProductName() + "\" ;");
+                    " WHERE " + ProductContract.ProductEntry._ID +
+                    " = " + deletedProduct.getProductId() + " ;");
 
         } catch (SQLException e) {
             //Toast.makeText(context,"due to delete: "+e,Toast.LENGTH_LONG).show();
@@ -78,13 +93,16 @@ public class DbModel implements IModel {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
+
+        values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_NAME, currentProduct.getProductName());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PRICE, currentProduct.getProductPrice());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_QUANTITY_AVAILABLE, currentProduct.getProductQuantity());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_SUPPLIER_NAME, currentProduct.getProductSupplier());
         values.put(ProductContract.ProductEntry.COLUMN_PRODUCT_PICTURE, currentProduct.getProductImage());
+        values.put(ProductContract.ProductEntry.COLUMN_SUPPLIER_EMAIL, currentProduct.getSupplierEmail());
 
         try {
-            long newRowId = db.update(TABLE_NAME, values, COLUMN_PRODUCT_NAME + "=" + currentProduct.getProductName(), null);
+            long newRowId = db.update(TABLE_NAME, values, "_id=" + currentProduct.getProductId(), null);
         } finally {
             db.close();
         }

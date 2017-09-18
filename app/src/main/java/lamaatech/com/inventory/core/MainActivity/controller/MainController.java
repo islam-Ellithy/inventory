@@ -25,6 +25,19 @@ public class MainController implements MainContract.IController {
     }
 
     @Override
+    public void addProduct(Product newProduct) {
+        model.addProduct(newProduct);
+        view.displayUpdateProducts(model.getProducts());
+    }
+
+    @Override
+    public void deleteAllItems() {
+        model.deleteAllItems();
+        view.displayUpdateProducts(model.getProducts());
+    }
+
+
+    @Override
     public Product getProduct(String id) {
         return model.getProduct(id);
     }

@@ -13,12 +13,20 @@ public interface MainContract {
     interface IController {
         void updateProducts();
 
+        void addProduct(Product newProduct);
+
+        void deleteAllItems();
+
         Product getProduct(String id);
     }
 
     interface IModel {
 
         List<Product> getProducts();
+
+        void addProduct(Product newProduct);
+
+        void deleteAllItems();
 
         Product getProduct(String id);
     }

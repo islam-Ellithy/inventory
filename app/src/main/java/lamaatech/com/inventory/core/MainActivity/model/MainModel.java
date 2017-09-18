@@ -14,19 +14,17 @@ import lamaatech.com.inventory.models.Product;
 
 public class MainModel implements MainContract.IModel {
 
-    public List<Product> productList ;
-    private DbModel db ;
+    public List<Product> productList;
+    private DbModel db;
 
-    public MainModel(Context context)
-    {
+    public MainModel(Context context) {
         db = new DbModel(context);
     }
 
-    public MainModel()
-    {
+    public MainModel() {
         productList = new ArrayList<>();
-        productList.add(new Product("BMW",10,"1,000,000","Ahmed Aly"));
-        productList.add(new Product("Mercedis",10,"1,000,000","Ahmed Amr"));
+        productList.add(new Product("BMW", 10, "1,000,000", "Ahmed Aly"));
+        productList.add(new Product("Mercedis", 10, "1,000,000", "Ahmed Amr"));
     }
 
     @Override
@@ -37,5 +35,15 @@ public class MainModel implements MainContract.IModel {
     @Override
     public Product getProduct(String id) {
         return db.getProduct(id);
+    }
+
+    @Override
+    public void addProduct(Product newProduct) {
+        db.addProduct(newProduct);
+    }
+
+    @Override
+    public void deleteAllItems() {
+        db.deleteAllItemsFromDb();
     }
 }

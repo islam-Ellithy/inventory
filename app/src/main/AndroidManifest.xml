@@ -23,10 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".core.EditorActivity.view.EditorActivity"
+            android:name=".core.DetailsActivity.view.DetailsActivity"
             android:label="@string/title_activity_editor"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".core.DetailActivity.view.DetailActivity" />
 
         <provider
             android:name=".database.InventoryProvider"

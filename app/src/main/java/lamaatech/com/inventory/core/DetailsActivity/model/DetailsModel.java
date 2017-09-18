@@ -1,4 +1,4 @@
-package lamaatech.com.inventory.core.EditorActivity.model;
+package lamaatech.com.inventory.core.DetailsActivity.model;
 
 import android.content.Context;
 
@@ -11,11 +11,11 @@ import lamaatech.com.inventory.models.Product;
  * Created by MrHacker on 9/6/2017.
  */
 
-public class EditorModel implements EditorContract.IModel {
+public class DetailsModel implements DetailsContract.IModel {
 
     private DbModel db;
 
-    public EditorModel(Context context) {
+    public DetailsModel(Context context) {
         db = new DbModel(context);
     }
 
@@ -42,5 +42,12 @@ public class EditorModel implements EditorContract.IModel {
     @Override
     public Product getProduct(String id) {
         return db.getProduct(id);
+    }
+
+    @Override
+    public String getMailMessageModel(Product product, String newOrderQuantity) {
+        return "Dear " + product.getProductName() + "\n" +
+                "I want to order " + newOrderQuantity + " item\n" +
+                "Thanks";
     }
 }

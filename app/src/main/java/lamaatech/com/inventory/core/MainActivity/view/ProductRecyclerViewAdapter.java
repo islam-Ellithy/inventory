@@ -37,7 +37,10 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.mIdView.setText(holder.mItem.getProductName());
         holder.mContentView.setText(holder.mItem.getProductPrice() + "$");
         holder.mQuantityView.setText(String.valueOf(holder.mItem.getProductQuantity()));
-        holder.mProductImage.setImageBitmap(DbBitmapUtility.getImage(holder.mItem.getProductImage()));
+        if (holder.mItem.getProductImage() != null)
+            holder.mProductImage.setImageBitmap(DbBitmapUtility.getImage(holder.mItem.getProductImage()));
+        else
+            holder.mProductImage.setImageResource(R.drawable.ic_announcement);
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +75,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             mIdView = (TextView) view.findViewById(R.id.productName);
             mContentView = (TextView) view.findViewById(R.id.content);
             mQuantityView = (TextView) view.findViewById(R.id.quantity);
-            mProductImage = (ImageView) view.findViewById(R.id.product_image);
+            mProductImage = (ImageView) view.findViewById(R.id.productImageView);
         }
 
         @Override

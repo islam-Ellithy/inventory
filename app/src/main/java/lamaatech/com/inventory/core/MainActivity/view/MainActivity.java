@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lamaatech.com.inventory.R;
-import lamaatech.com.inventory.core.EditorActivity.view.EditorActivity;
+import lamaatech.com.inventory.core.DetailsActivity.view.DetailsActivity;
 import lamaatech.com.inventory.core.MainActivity.controller.MainController;
 import lamaatech.com.inventory.core.MainActivity.model.MainContract;
 import lamaatech.com.inventory.models.Product;
@@ -22,23 +24,29 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
 
     private MainController controller;
     private List<Product> products;
+    @BindView(R.id.empty_view)
+    protected LinearLayout emptyView;
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
         controller = new MainController(this, getBaseContext());
 
         controller.updateProducts();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addProduct);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, EditorActivity.class));
+                startActivity(new Intent(MainActivity.this, DetailsActivity.class));
             }
         });
     }
@@ -57,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
     }
 
     private void goToEmptyView() {
-
-        LinearLayout layout = (LinearLayout) findViewById(R.id.empty_view);
-        layout.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.VISIBLE);
     }
 
 
@@ -84,10 +90,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.delete_all_items) {
+            controller.deleteAllItems();
             return true;
         } else if (id == R.id.insert_dummy_data) {
-
+            Product dummyProduct = new Product("DUMMY Product",
+                    10,
+                    "10",
+                    "Dummy supplier",
+                    null,
+                    "i@gmail.com");
+            controller.addProduct(dummyProduct);
             return true;
         }
 
@@ -96,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
 
     @Override
     public void onListFragmentInteraction(Product item) {
-        Intent intent = new Intent(this, EditorActivity.class);
+        Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("product", item);
         startActivity(intent);
     }
@@ -104,12 +117,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
 
     @Override
     public void displayUpdateProducts(List<Product> products) {
-        if (products.size() == 0) {
+        if (0 == products.size()) {
             goToEmptyView();
         } else {
-            this.products = products;
-            goToProductFragment();
+            emptyView.setVisibility(View.GONE);
         }
+        this.products = products;
+        goToProductFragment();
     }
 
 }
