@@ -30,40 +30,43 @@
                 android:contentDescription="Product Image"
                 android:src="@drawable/ic_announcement" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_toEndOf="@id/productImageView"
-                android:layout_toRightOf="@id/productImageView"
-                android:orientation="horizontal">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:layout_toEndOf="@+id/productImageView"
+                android:layout_toRightOf="@+id/productImageView"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/productName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:orientation="vertical">
+                    android:paddingBottom="16dp"
+                    android:text="dfgg"
+                    android:textAppearance="?attr/textAppearanceListItem" />
 
-                    <TextView
-                        android:id="@+id/productName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="16dp"
-                        android:text="dfgg"
-                        android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/id"
+                    android:text="dfgg"
+                    android:textAppearance="?attr/textAppearanceListItem" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/id"
-                        android:text="dfgg"
-                        android:textAppearance="?attr/textAppearanceListItem" />
-                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/quantity"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/text_margin"
@@ -72,8 +75,13 @@
                     android:textAppearance="?attr/textAppearanceListItem"
                     android:textSize="20sp" />
 
+                <Button
+                    android:id="@+id/sellButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sell"
+                    android:scaleType="fitCenter" />
             </LinearLayout>
-
 
         </RelativeLayout>
     </LinearLayout>

@@ -11,11 +11,11 @@ import lamaatech.com.inventory.models.Product;
 public interface MainContract {
 
     interface IController {
-        void updateProducts();
-
         void addProduct(Product newProduct);
 
         void deleteAllItems();
+
+        void updateProducts();
 
         Product getProduct(String id);
     }
@@ -27,6 +27,8 @@ public interface MainContract {
         void addProduct(Product newProduct);
 
         void deleteAllItems();
+
+        void updateProduct(Product currentProduct);
 
         Product getProduct(String id);
     }

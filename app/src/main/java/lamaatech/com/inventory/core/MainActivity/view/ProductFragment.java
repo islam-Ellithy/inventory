@@ -79,6 +79,6 @@ public class ProductFragment extends Fragment {
     }
 
     interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Product item);
+        void onListFragmentInteraction(Product item, boolean b);
     }
 }

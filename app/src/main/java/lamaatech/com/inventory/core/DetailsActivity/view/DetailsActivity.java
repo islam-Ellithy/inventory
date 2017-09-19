@@ -2,6 +2,7 @@ package lamaatech.com.inventory.core.DetailsActivity.view;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -117,25 +119,27 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
                     if (supplierEmail.length() > 0 && supplierEmail.contains("@")) {
                         if (productImageView.getDrawable() != null) {
                             bitmap = ((BitmapDrawable) productImageView.getDrawable()).getBitmap();
+
+                            Integer quantity = Integer.parseInt(productQuantityEditText.getText().toString());
+                            Integer productId = -1;
+                            if (product != null)
+                                productId = product.getProductId();
+
+                            if (quantity > 0)
+                                product = new Product(productName,
+                                        quantity,
+                                        price,
+                                        supplierName,
+                                        DbBitmapUtility.getBytes(bitmap),
+                                        supplierEmail);
+                            else
+                                showToast("Please enter quantity");
+
+                            product.setProductId(productId);
+
+                        } else {
+                            showToast("Please enter product photo");
                         }
-                        if (bitmap == null) {
-                            productImageView.setImageResource(R.drawable.ic_announcement);
-                            bitmap = ((BitmapDrawable) productImageView.getDrawable()).getBitmap();
-                        }
-
-                        String quantity = productQuantityEditText.getText().toString();
-                        Integer productId = -1;
-                        if (product != null)
-                            productId = product.getProductId();
-                        product = new Product(productName,
-                                Integer.parseInt(quantity),
-                                price,
-                                supplierName,
-                                DbBitmapUtility.getBytes(bitmap),
-                                supplierEmail);
-
-                        product.setProductId(productId);
-
                     } else {
                         showToast("Please enter supplier email");
                     }
@@ -165,8 +169,32 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
     @OnClick(R.id.deleteProductButton)
     @Override
     public void deleteProductBtn(View view) {
-        controller.deleteProduct(product);
-        finish();
+        showPrompet();
+    }
+
+    private void showPrompet() {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Delete entry")
+                .setMessage("Are you sure you want to delete this entry?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                        controller.deleteProduct(product);
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 

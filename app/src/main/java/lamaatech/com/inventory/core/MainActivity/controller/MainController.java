@@ -26,7 +26,11 @@ public class MainController implements MainContract.IController {
 
     @Override
     public void addProduct(Product newProduct) {
-        model.addProduct(newProduct);
+        if (newProduct.getProductId() != -1)
+            model.updateProduct(newProduct);
+        else
+            model.addProduct(newProduct);
+
         view.displayUpdateProducts(model.getProducts());
     }
 

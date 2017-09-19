@@ -27,6 +27,12 @@ public class MainModel implements MainContract.IModel {
         productList.add(new Product("Mercedis", 10, "1,000,000", "Ahmed Amr"));
     }
 
+
+    @Override
+    public void updateProduct(Product currentProduct) {
+        db.updateProduct(currentProduct);
+    }
+
     @Override
     public List<Product> getProducts() {
         return db.getProducts();

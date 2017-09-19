@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,19 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         else
             holder.mProductImage.setImageResource(R.drawable.ic_announcement);
 
+        holder.sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer quantity = holder.mItem.getProductQuantity();
+                if (quantity > 0) {
+                    quantity--;
+                    holder.mItem.setProductQuantity(quantity);
+                    holder.mQuantityView.setText(String.valueOf(quantity));
+                    mListener.onListFragmentInteraction(holder.mItem, true);
+                }
+
+            }
+        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +63,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem, false);
                 }
             }
         });
@@ -68,6 +82,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         public final TextView mQuantityView;
         public final ImageView mProductImage;
         public Product mItem;
+        public final Button sellButton;
 
         public ViewHolder(View view) {
             super(view);
@@ -76,6 +91,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             mContentView = (TextView) view.findViewById(R.id.content);
             mQuantityView = (TextView) view.findViewById(R.id.quantity);
             mProductImage = (ImageView) view.findViewById(R.id.productImageView);
+            sellButton = (Button) view.findViewById(R.id.sellButton);
         }
 
         @Override

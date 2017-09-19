@@ -108,10 +108,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.IVie
     }
 
     @Override
-    public void onListFragmentInteraction(Product item) {
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("product", item);
-        startActivity(intent);
+    public void onListFragmentInteraction(Product item, boolean isQuantity) {
+        if (isQuantity) {
+            controller.addProduct(item);
+        } else {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra("product", item);
+            startActivity(intent);
+        }
     }
 
 

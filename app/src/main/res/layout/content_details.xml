@@ -157,8 +157,7 @@
                 android:contentDescription="@string/image"
                 android:hint="@string/supplier_name"
                 android:inputType="textPersonName"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_announcement" />
+                android:scaleType="fitCenter" />
 
         </RelativeLayout>
 
