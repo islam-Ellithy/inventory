@@ -28,10 +28,6 @@ public class Product implements Serializable {
         return supplierEmail;
     }
 
-    public void setSupplierEmail(String supplierEmail) {
-        this.supplierEmail = supplierEmail;
-    }
-
     private byte[] productImage;
 
     public Product(String productName, Integer productQuantity, String productPrice, String productSupplier) {
@@ -73,24 +69,12 @@ public class Product implements Serializable {
         return productImage;
     }
 
-    public void setProductImage(byte[] productImage) {
-        this.productImage = productImage;
-    }
-
     public String getProductSupplier() {
         return productSupplier;
     }
 
-    public void setProductSupplier(String productSupplier) {
-        this.productSupplier = productSupplier;
-    }
-
     public String getProductName() {
         return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 
     public Integer getProductQuantity() {
@@ -105,7 +89,4 @@ public class Product implements Serializable {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
 }
