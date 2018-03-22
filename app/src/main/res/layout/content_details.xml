@@ -68,8 +68,9 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:background="@color/primaryLightColor"
+                android:background="@drawable/custom_button"
                 android:text="-"
+                android:textColor="@drawable/text_color"
                 android:textSize="24sp" />
 
             <EditText
@@ -88,8 +89,9 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:background="@color/primaryLightColor"
+                android:background="@drawable/custom_button"
                 android:text="+"
+                android:textColor="@drawable/text_color"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -141,8 +143,9 @@
                 android:id="@+id/selectImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryLightColor"
+                android:background="@drawable/custom_button"
                 android:gravity="center"
+                android:textColor="@drawable/text_color"
                 android:text="@string/select_image" />
 
             <ImageView
@@ -172,15 +175,17 @@
                 android:id="@+id/addProductButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryLightColor"
+                android:textColor="@drawable/text_color"
+                android:background="@drawable/custom_button"
                 android:text="@string/add" />
 
             <Button
                 android:id="@+id/deleteProductButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryLightColor"
+                android:background="@drawable/custom_button"
                 android:text="@string/delete"
+                android:textColor="@drawable/text_color"
                 android:visibility="gone" />
 
 

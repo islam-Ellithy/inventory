@@ -41,7 +41,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         if (holder.mItem.getProductImage() != null)
             holder.mProductImage.setImageBitmap(DbBitmapUtility.getImage(holder.mItem.getProductImage()));
         else
-            holder.mProductImage.setImageResource(R.drawable.ic_announcement);
+            holder.mProductImage.setImageResource(R.mipmap.ic_launcher);
 
         holder.sellButton.setOnClickListener(new View.OnClickListener() {
             @Override

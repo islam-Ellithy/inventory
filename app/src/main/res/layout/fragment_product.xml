@@ -80,6 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sell"
+                    android:textColor="@drawable/text_color"
+                    android:background="@drawable/custom_button"
                     android:scaleType="fitCenter" />
             </LinearLayout>
 
